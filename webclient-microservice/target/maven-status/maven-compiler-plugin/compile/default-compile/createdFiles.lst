@@ -1,0 +1,8 @@
+com/doj/web/RemoteAccountRepository.class
+com/doj/web/Customer.class
+com/doj/web/WebclientMicroserviceServerApplication.class
+com/doj/web/CustomerRepository.class
+com/doj/web/AccountRepository.class
+com/doj/web/AccountController.class
+com/doj/web/RemoteCustomerRepository.class
+com/doj/web/Account.class
