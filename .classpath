@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="accounts-microservice-server/src/main/java"/>
+	<classpathentry kind="src" path="accounts-microservice-server/src/test/java"/>
+	<classpathentry kind="src" path="configuration-service/src/main/java"/>
+	<classpathentry kind="src" path="configuration-service/src/test/java"/>
+	<classpathentry kind="src" path="customers-microservice-s/src/main/java"/>
+	<classpathentry kind="src" path="customers-microservice-s/src/test/java"/>
+	<classpathentry kind="src" path="discovery-microservice-server/src/main/java"/>
+	<classpathentry kind="src" path="discovery-microservice-server/src/test/java"/>
+	<classpathentry kind="src" path="gateway-service/src/main/java"/>
+	<classpathentry kind="src" path="gateway-service/src/test/java"/>
+	<classpathentry excluding="com/doj/web/" kind="src" path="webclient-microservice-server/src/main/java"/>
+	<classpathentry kind="src" path="webclient-microservice-server/src/main/java/com/doj/web"/>
+	<classpathentry kind="src" path="webclient-microservice-server/src/test/java"/>
+	<classpathentry kind="lib" path="accounts-microservice-server/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="configuration-service/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="customers-microservice-s/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="discovery-microservice-server/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="discovery-microservice-server/bin/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="gateway-service/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="webclient-microservice-server/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="output" path="accounts-microservice-server/target/classes"/>
+</classpath>
