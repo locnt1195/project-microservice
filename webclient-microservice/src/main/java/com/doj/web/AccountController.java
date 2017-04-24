@@ -24,11 +24,7 @@ public class AccountController {
 	@Autowired
 	AccountRepository accountRepository;
 	
-	@RequestMapping("/")
-	public String home(){
-		logger.info("Index");
-		return "index";
-	}
+
 	@RequestMapping("/accountList")
 	public String accountList(Model model) {
 		logger.info("Acount List");

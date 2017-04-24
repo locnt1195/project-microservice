@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="<c:url value="resources/styles/bootstrap/3.3.5/css/bootstrap-theme.min.css" />" />
     <link rel="stylesheet" href="<c:url value="resources/styles/pivotal.css" />" />
 	<title>spring-microservices: Home</title>
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
 </head>
 
 <body>
@@ -43,13 +44,18 @@
 			<h1>Accounts Web - Home Page</h1>
 
 			<ul>
-				<li><a href="/accountList">View Account List</a></li>
+				<button id="account">Account List</button>
 				<li><a href="/customerList">Customer List</a></li>
 			</ul>
 			
 		</div>
 		
 	</div>
-		
+	<script>
+		$(#'account').click(function(){
+			alert("Hello")
+			
+		})
+	</script>
 </body>
 </html>
