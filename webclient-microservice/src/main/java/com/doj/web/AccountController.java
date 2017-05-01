@@ -48,4 +48,10 @@ public class AccountController {
 		model.addAttribute("customers", customerRepository.getallCustomers());
 		return "customerList";
 	}
+	
+	@RequestMapping("/test")
+	public String test(){
+		logger.info("-----test");
+		return "Hello";
+	}
 }

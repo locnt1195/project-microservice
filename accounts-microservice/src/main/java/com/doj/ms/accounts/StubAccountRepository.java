@@ -8,6 +8,9 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Repository;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 /**
  * @author Dinesh.Rajput
  *
@@ -31,10 +34,25 @@ public class StubAccountRepository implements AccountRepository {
 	public List<Account> getAllAccounts() {
 		return new ArrayList<Account>(accountsByNumber.values());
 	}
-
+	
 	@Override
 	public Account getAccount(String number) {
 		return accountsByNumber.get(number);
+	}
+
+	@Override
+	public void demoJson() {
+		// TODO Auto-generated method stub
+		ObjectMapper mapper = new ObjectMapper();
+		Account acc = accountsByNumber.get("1286");
+		String jsonString = "";
+		try {
+			jsonString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(acc);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		System.out.print(jsonString);
 	}
 
 }

@@ -2,6 +2,7 @@ package com.doj.web;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.client.RestTemplate;
@@ -11,6 +12,10 @@ import org.springframework.web.client.RestTemplate;
  *
  */
 public class RemoteAccountRepository implements AccountRepository {
+	
+	protected Logger logger = Logger
+			.getLogger(RemoteAccountRepository.class.getName());
+
 	
 	@Autowired
 	protected RestTemplate restTemplate;
@@ -24,6 +29,7 @@ public class RemoteAccountRepository implements AccountRepository {
 	
 	@Override
 	public List<Account> getAllAccounts() {
+		
 		Account[] accounts = restTemplate.getForObject(serviceUrl+"/accounts", Account[].class);
 		return Arrays.asList(accounts);
 	}

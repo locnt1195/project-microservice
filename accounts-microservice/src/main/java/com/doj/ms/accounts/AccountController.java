@@ -29,6 +29,7 @@ public class AccountController {
 		logger.info("accounts-microservice all() invoked");
 		List<Account> accounts = accountRepository.getAllAccounts();
 		logger.info("accounts-microservice all() found: " + accounts.size());
+		accountRepository.demoJson();
 		return accounts.toArray(new Account[accounts.size()]);
 	}
 	

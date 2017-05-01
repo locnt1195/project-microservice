@@ -22,8 +22,15 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<docker.image.prefix>springio</docker.image.prefix>
 	</properties>
-
+	
+	<repositories>
+	    <repository>
+	        <id>codehaus</id>
+	        <url>http://repository.codehaus.org/org/codehaus</url>
+	    </repository>
+	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
@@ -76,8 +83,9 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
+			
+	    </plugins>
+	    <finalName>com.doj.web-0.0.1-SNAPSHOT</finalName>
 	</build>
-
 
 </project>
