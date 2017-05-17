@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
@@ -13,6 +14,7 @@ public class WebclientMicroserviceServerApplication {
 	
 	public static final String ACCOUNTS_SERVICE_URL = "http://ACCOUNTS-MICROSERVICE";
 	public static final String CUSTOMER_SERVICE_URL = "http://CUSTOMERS-MICROSERVICE";
+	public static final String UPLOADFILE_SERVICE_URL = "http://UPLOADFILE-MICROSERVICE";
 	
 	public static void main(String[] args) {
 		SpringApplication.run(WebclientMicroserviceServerApplication.class, args);
@@ -30,5 +32,9 @@ public class WebclientMicroserviceServerApplication {
 	@Bean
 	public CustomerRepository customerRepository(){
 		return new RemoteCustomerRepository(CUSTOMER_SERVICE_URL);
+	}
+	@Bean
+	public UploadFileRepository uploadfileRepository(){
+		return new RemoteUploadFileRepository(UPLOADFILE_SERVICE_URL);
 	}
 }
