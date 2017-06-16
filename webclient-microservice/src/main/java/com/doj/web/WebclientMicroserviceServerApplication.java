@@ -15,6 +15,7 @@ public class WebclientMicroserviceServerApplication {
 	public static final String ACCOUNTS_SERVICE_URL = "http://ACCOUNTS-MICROSERVICE";
 	public static final String CUSTOMER_SERVICE_URL = "http://CUSTOMERS-MICROSERVICE";
 	public static final String UPLOADFILE_SERVICE_URL = "http://UPLOADFILE-MICROSERVICE";
+	public static final String VIDEO_SERVICE_URL = "http://VIDEO-MICROSERVICE";
 	
 	public static void main(String[] args) {
 		SpringApplication.run(WebclientMicroserviceServerApplication.class, args);
@@ -36,5 +37,9 @@ public class WebclientMicroserviceServerApplication {
 	@Bean
 	public UploadFileRepository uploadfileRepository(){
 		return new RemoteUploadFileRepository(UPLOADFILE_SERVICE_URL);
+	}
+	@Bean
+	public VideoRepository videoRepository(){
+		return new RemoteVideoRepository(VIDEO_SERVICE_URL);
 	}
 }

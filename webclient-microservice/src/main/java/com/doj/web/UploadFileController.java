@@ -26,26 +26,25 @@ public class UploadFileController {
     
     @Autowired
     UploadFileRepository uploadFileRepository;
-    
-    @GetMapping("/uploadFile")
+        
+    @GetMapping("/upload")
     public String index(Model model) {
         return "uploadFile";
     }
     
     @PostMapping("/uploadFile")
-    public String handleFileUpload(@RequestParam("file") MultipartFile file, Model model) {    	
-    	boolean uploadResult = uploadFileRepository.store(file);
+    public String handleFileUpload(
+    		@RequestParam("file") MultipartFile file,
+    		@RequestParam("type") String type,
+    		@RequestParam("author") String author, 
+    		Model model) {
+    	boolean uploadResult = uploadFileRepository.store(file,type,author);
     	
     	if(uploadResult)
     		model.addAttribute("message", "You successfully uploaded " + file.getName() + "!");
     	else 
     		 model.addAttribute("message", "FAIL to upload " + file.getName() + "!");
+    	
         return "uploadFile";
-    }
- 
-    @GetMapping("/uploadFileList")
-    public String getListFiles(Model model) {
-    	model.addAttribute("files", uploadFileRepository.getAllFiles());
-        return "uploadFileList";
     }
 }
