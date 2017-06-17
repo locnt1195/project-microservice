@@ -1,10 +1,17 @@
 package com.doj.web;
 
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 public class RemoteVideoRepository implements VideoRepository{
@@ -33,6 +40,20 @@ public class RemoteVideoRepository implements VideoRepository{
 	public Video searchByName(String name) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Video> getAllVideosByName(String name) {
+		HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setAccept(Collections.singletonList(MediaType.parseMediaType("application/json")));
+        httpHeaders.setContentType(MediaType.MULTIPART_FORM_DATA);  
+        
+        LinkedMultiValueMap<String, Object> vars = new LinkedMultiValueMap<String, Object>();
+		vars.add("name", name);
+        
+		HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(vars, httpHeaders);
+		Video[] videos = restTemplate.postForObject(serviceUrl + "/getAllVideosByName", requestEntity, Video[].class); 
+		return Arrays.asList(videos);
 	}
 
 }

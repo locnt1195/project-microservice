@@ -99,7 +99,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<div th:if="${message}">
 										<h2 th:text="${message}"/>
 									</div>
-									<input type="file" name="file" id="files" accept="image/*"/>
+									<input type="file" name="file" id="files" accept="video/*"/>
 									<input type="text" name="author" placeholder="Author" required="">
 									<select class="form-control bfh-countries" name="type" data-country="US">
 										<option value="Video">Video</option>

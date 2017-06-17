@@ -42,8 +42,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div id="navbar" class="navbar-collapse collapse">
 			<div class="top-search">
 				<form class="navbar-form navbar-right">
-					<input type="text" class="form-control" placeholder="Search...">
-					<input type="submit" value=" ">
+					<input type="text" class="form-control" name="videoName" id="videoName" placeholder="Search...">
+					<input type="button" value="Search" onClick="onSearchClick()">
 				</form>
 			</div>  
 			<div class="header-top-right">
@@ -523,7 +523,28 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	           
 	        }
 
-	    };  
+	    };
+	    
+	    function onSearchClick(){
+	    	var data = {}
+	    	data["name"] = $('#videoName').val();
+	    	
+	    	$.ajax({
+	    		type : "POST",
+	    		contentType : "application/json",
+	    		url : "./getAllVideosByName",
+	    		data : JSON.stringify(data),
+	    		dataType : 'json',
+	    		success : function(data) {
+	    			//alert("SUCCESS");
+	    			loadData(data);
+	    		},
+	    		error : function(data){
+	    			//alert("ERROR");
+	    		}
+	    	});
+	    }
+	    
     </script>
   </body>
 </html>
