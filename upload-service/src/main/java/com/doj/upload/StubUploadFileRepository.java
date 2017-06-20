@@ -18,6 +18,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.FileSystemUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Repository
 public class StubUploadFileRepository implements UploadFileRepository {
 
@@ -34,28 +37,4 @@ public class StubUploadFileRepository implements UploadFileRepository {
             return false;
         }
 	}
-
-	@Override
-	public void deleteAll() {
-		// TODO Auto-generated method stub
-		FileSystemUtils.deleteRecursively(rootLocation.toFile());
-	}
-
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-		try {
-            Files.createDirectory(rootLocation);
-        } catch (IOException e) {
-            throw new RuntimeException("Could not initialize storage!");
-        }
-	}
-
-	@Override
-	public List<File> getAllFiles() {
-		File folder = new File(rootLocation.toAbsolutePath().toString());
-		File[] listOfFiles = folder.listFiles();
-		return Arrays.asList(listOfFiles);
-	}
-
 }

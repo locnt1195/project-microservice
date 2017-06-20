@@ -42,8 +42,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <div id="navbar" class="navbar-collapse collapse">
 			<div class="top-search">
 				<form class="navbar-form navbar-right">
-					<input type="text" class="form-control" placeholder="Search...">
-					<input type="submit" value=" ">
+					<input type="text" class="form-control" name="videoName" id="videoName" placeholder="Search...">
+					<input type="button" value="Search" onClick="onSearchClick()">
 				</form>
 			</div>  
 			<div class="header-top-right">
@@ -81,20 +81,21 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</ul>
 						</div>
 						<div class="copyright">
-							<p>Copyright © 2015 My Play. All Rights Reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
+							<p>Copyright Â© 2015 My Play. All Rights Reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>
 						</div>
 					</div>
 				</div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-			<div class="show-top-grids">
+        	<div class="show-top-grids">
 				<!-- CONTENT -->
 				<div class="col-sm-12 single-left">
-					<div class="clearfix"> </div>					
-					<div>	
+					<div class="clearfix"> </div>
+					<div class="recommended" id="hello">
+						
 					</div>
-	        </div>
-		</div>
+        		</div>
+			</div>
 				<div class="clearfix"> </div>
 			<!-- footer -->
 			<div class="footer">
@@ -181,7 +182,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<select class="form-control bfh-countries">
 									<option value="">Select Country</option>
 									<option value="AFG">Afghanistan</option>
-									<option value="ALA">Åland Islands</option>
+									<option value="ALA">Ã…land Islands</option>
 									<option value="ALB">Albania</option>
 									<option value="DZA">Algeria</option>
 									<option value="ASM">American Samoa</option>
@@ -234,10 +235,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<option value="COD">Congo, the Democratic Republic of the</option>
 									<option value="COK">Cook Islands</option>
 									<option value="CRI">Costa Rica</option>
-									<option value="CIV">Côte d'Ivoire</option>
+									<option value="CIV">CÃ´te d'Ivoire</option>
 									<option value="HRV">Croatia</option>
 									<option value="CUB">Cuba</option>
-									<option value="CUW">Curaçao</option>
+									<option value="CUW">CuraÃ§ao</option>
 									<option value="CYP">Cyprus</option>
 									<option value="CZE">Czech Republic</option>
 									<option value="DNK">Denmark</option>
@@ -360,11 +361,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<option value="PRT">Portugal</option>
 									<option value="PRI">Puerto Rico</option>
 									<option value="QAT">Qatar</option>
-									<option value="REU">Réunion</option>
+									<option value="REU">RÃ©union</option>
 									<option value="ROU">Romania</option>
 									<option value="RUS">Russian Federation</option>
 									<option value="RWA">Rwanda</option>
-									<option value="BLM">Saint Barthélemy</option>
+									<option value="BLM">Saint BarthÃ©lemy</option>
 									<option value="SHN">Saint Helena, Ascension and Tristan da Cunha</option>
 									<option value="KNA">Saint Kitts and Nevis</option>
 									<option value="LCA">Saint Lucia</option>
@@ -458,5 +459,92 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="js/bootstrap.min.js"></script>
     <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script type="text/javascript">
+	    $(window).load(function () {
+	    	abc();
+	    });
+	
+	    function abc(){
+	    	var url = window.location;
+	        $.ajax({
+	            type: "GET",
+	        	url: "/getAllVideos",
+	        	contentType: "application/json",
+	        	dataType: 'json',
+	            success: function (result) {
+	                loadData(result);
+	            },
+	            error: function (result) {
+	                alert("error");
+	            }
+	        });
+	    };
+	    
+	    function loadData(data) {
+	        //load data here
+	        $('#hello').html
+	        var result = $('#hello');
+	        result.html("");
+	        if (data.length > 0) {
+	        	var itemPerRow = 4;
+	        	var totalRow = data.length / itemPerRow;
+	        	var totalRowHolder = Math.round(totalRow);
+	        	totalRow = totalRowHolder > totalRow ? totalRowHolder : Math.round(totalRow) + 1;
+	        	
+	        	for(var row = 0;row < totalRow;row++){
+	        		var currentRowId = "row" + row;
+	        		result.append("<div class=\"recommended-grids\" id=" + currentRowId + "></div>");
+	        		var currentRow = $('#' + currentRowId);
+	        		
+	        		var currentItemPerRow = itemPerRow;
+	        		if(row == totalRow - 1)
+	        			currentItemPerRow = data.length - row * itemPerRow;
+	        		
+	        		for (var i = 0; i < currentItemPerRow ; i++) {
+	        			var index = (row * itemPerRow + i);
+	        			var temp = data[index];
+	        			
+		            	result.append("<div class=\"col-md-3 resent-grid recommended-grid\">" + 
+		            						"<div class=\"resent-grid-img recommended-grid-img\">" +
+		            							"<a href=\"single.html\"><img src=\"images/c2.jpg\"/></a>" +
+		            							"<div class=\"time small-time\"><p> 00:00 </p></div>" +
+		            							"<div class=\"clck small-clck\"><span class=\"glyphicon glyphicon-time\" aria-hidden=\"true\"></span></div>" +
+		            						"</div>" + 
+		            						"<div class=\"resent-grid-info recommended-grid-info video-info-grid\">" +
+		            						"<h5><a href=\"single.html\" class=\"title\">" + temp.name + "</a></h5>" +
+		    								"<ul><li><p class=\"author author-info\"><a href=\"#\" class=\"author\">" + temp.author + "</a></p></li>" +
+												"<li class=\"right-list\"><p class=\"views views-info\">" + temp.views + " views</p></li></ul>" +
+		            						"</div>" + 
+            						  "</div>");
+		            }
+	        	}
+	        }
+	        else {
+	           
+	        }
+
+	    };
+	    
+	    function onSearchClick(){
+	    	var data = {}
+	    	data["name"] = $('#videoName').val();
+	    	
+	    	$.ajax({
+	    		type : "POST",
+	    		contentType : "application/json",
+	    		url : "./getAllVideosByName",
+	    		data : JSON.stringify(data),
+	    		dataType : 'json',
+	    		success : function(data) {
+	    			//alert("SUCCESS");
+	    			loadData(data);
+	    		},
+	    		error : function(data){
+	    			//alert("ERROR");
+	    		}
+	    	});
+	    }
+	    
+    </script>
   </body>
 </html>

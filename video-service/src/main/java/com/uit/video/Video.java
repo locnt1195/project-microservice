@@ -1,17 +1,13 @@
-package com.doj.upload.mongodb;
+package com.uit.video;
 
 import java.io.Serializable;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class Video implements Serializable{
 
-@Document(collection="Video")
-public class Video {
 	/**
 	 * 
 	 */
-	@Id
-	public String id;
+	private static final long serialVersionUID = 1L;
 	public String name;
 	public String link;
 	public String type;
@@ -19,6 +15,7 @@ public class Video {
 	public int views;
 	
 	public Video(String name,String link,String type,String author,int views){
+		super();
 		this.name = name;
 		this.link = link;
 		this.type = type;

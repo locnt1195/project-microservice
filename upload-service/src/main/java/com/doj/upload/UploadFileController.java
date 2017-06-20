@@ -54,8 +54,12 @@ public class UploadFileController {
     List<String> files = new ArrayList<String>();
     
     @RequestMapping(value = "/uploadFile", method = RequestMethod.POST)
-    public @ResponseBody boolean uploadFile(@RequestParam(value="file") MultipartFile file) throws IOException {
-        boolean uploadResult = uploadFileRepository.store(file);
+    public @ResponseBody boolean uploadFile(
+    		@RequestParam(value="file") MultipartFile file,
+    		@RequestParam(value="type") String type,
+    		@RequestParam(value="author") String author) throws IOException {
+        
+    	boolean uploadResult = uploadFileRepository.store(file);
         if(!uploadResult)
         	return false;
         
@@ -103,12 +107,13 @@ public class UploadFileController {
         String shareableLink = "https://drive.google.com/file/d/" + f.getId() + "/view?usp=sharing";
         System.out.println(shareableLink);
         
-        Video video = new Video(file.getOriginalFilename(), shareableLink, "VideoType");
+        int randomViews = 10 + (int)(Math.random() * 9999); 
+        Video video = new Video(file.getOriginalFilename(), shareableLink, type, author,randomViews);
         videoRepository.save(video);
         
         return true;
     }
-    
+        
     /** Application name. */
     private static final String APPLICATION_NAME =
         "Drive API Upload Service";

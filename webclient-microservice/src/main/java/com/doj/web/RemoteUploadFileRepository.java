@@ -46,7 +46,7 @@ public class RemoteUploadFileRepository implements UploadFileRepository{
 	}
 	
 	@Override
-	public boolean store(MultipartFile file) {
+	public boolean store(MultipartFile file,String type,String author) {
 		FormHttpMessageConverter converter = new FormHttpMessageConverter();
 		converter.setCharset(Charset.forName("UTF8"));
 		restTemplate.getMessageConverters().add(converter);
@@ -71,6 +71,8 @@ public class RemoteUploadFileRepository implements UploadFileRepository{
         }catch (IOException e) {
             e.printStackTrace();
         }   
+        vars.add("type", type);
+        vars.add("author", author);
         
         HttpEntity<LinkedMultiValueMap<String, Object>> requestEntity = new HttpEntity<>(vars, httpHeaders);
         boolean uploadResource = restTemplate.postForObject(serviceUrl+"/uploadFile", requestEntity, boolean.class); 
@@ -79,24 +81,6 @@ public class RemoteUploadFileRepository implements UploadFileRepository{
         	currentFile.delete();
         
 		return uploadResource;
-	}
-
-	@Override
-	public void deleteAll() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<File> getAllFiles() {
-		File[] files = restTemplate.getForObject(serviceUrl+"/uploadFileList", File[].class);
-		return Arrays.asList(files);
 	}
 
 }

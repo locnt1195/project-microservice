@@ -7,11 +7,6 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface UploadFileRepository {
-	public boolean store(MultipartFile file);
+	public boolean store(MultipartFile file,String type,String author);
 	 
-    public List<File> getAllFiles();
-     
-    public void deleteAll();
- 
-    public void init();
 }
