@@ -104,7 +104,8 @@ public class UploadFileController {
         	deleteFile.delete();
         batch.execute();
         
-        String shareableLink = "https://drive.google.com/file/d/" + f.getId() + "/view?usp=sharing";
+//        String shareableLink = "https://drive.google.com/file/d/" + f.getId() + "/view?usp=sharing";
+        String shareableLink = f.getId();
         System.out.println(shareableLink);
         
         int randomViews = 10 + (int)(Math.random() * 9999); 

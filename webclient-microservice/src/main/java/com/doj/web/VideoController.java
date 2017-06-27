@@ -39,4 +39,10 @@ public class VideoController {
 		return response;
 	}
 	
+	@RequestMapping("/play")
+    public String play(Model model, @RequestParam String id){
+		System.out.println(id);
+		model.addAttribute("id", id);
+        return "playvideo";
+    }
 }

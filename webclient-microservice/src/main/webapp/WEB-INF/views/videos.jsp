@@ -7,7 +7,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>Upload</title>
+<title>Video</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="keywords" content="My Play Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
@@ -506,7 +506,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	        			
 		            	result.append("<div class=\"col-md-3 resent-grid recommended-grid\">" + 
 		            						"<div class=\"resent-grid-img recommended-grid-img\">" +
-		            							"<a href=\"single.html\"><img src=\"images/c2.jpg\"/></a>" +
+		            							"<a href=\"./play?id=" + temp.link + "\"><img src=\"images/c2.jpg\"/></a>" +
 		            							"<div class=\"time small-time\"><p> 00:00 </p></div>" +
 		            							"<div class=\"clck small-clck\"><span class=\"glyphicon glyphicon-time\" aria-hidden=\"true\"></span></div>" +
 		            						"</div>" + 

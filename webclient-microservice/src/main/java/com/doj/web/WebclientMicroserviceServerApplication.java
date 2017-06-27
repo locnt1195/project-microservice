@@ -27,14 +27,6 @@ public class WebclientMicroserviceServerApplication {
 		return new RestTemplate();
 	}
 	@Bean
-	public AccountRepository accountRepository(){
-		return new RemoteAccountRepository(ACCOUNTS_SERVICE_URL);
-	}
-	@Bean
-	public CustomerRepository customerRepository(){
-		return new RemoteCustomerRepository(CUSTOMER_SERVICE_URL);
-	}
-	@Bean
 	public UploadFileRepository uploadfileRepository(){
 		return new RemoteUploadFileRepository(UPLOADFILE_SERVICE_URL);
 	}
